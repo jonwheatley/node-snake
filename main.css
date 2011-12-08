@@ -1,0 +1,19 @@
+canvas {
+	border: solid 2px #000;
+}
+
+#wrapper {
+	padding-top: 80px;
+	text-align: center;
+}
+
+#text {
+	padding-top: 10px;
+	font-family: Georgia;
+}
+
+small {
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 40px;
+}

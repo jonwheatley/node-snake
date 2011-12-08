@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <title>socket.io chat</title>
+    <meta charset='utf-8'>
+		<link rel="stylesheet" type="text/css" href="/main.css"/>
+    <script src="/socket.io/socket.io.js"></script>
+		
+    <script>
+        function onLoad() {
+            var socket = io.connect('http://localhost:8000');
+            
+            var logBt = document.getElementById('loginButton');
+            logBt.onclick = function(e) {
+                var nameInp = document.getElementById('nameInput');
+                socket.emit('login', nameInp.value);
+            };
+            
+            var sendBt = document.getElementById('sendButton');
+            sendBt.onclick = function(e) {
+                var msgTx = document.getElementById('mensagemInput');
+                socket.emit('mensagem', msgTx.value + '\n');
+            };
+            
+            socket.on('ready', function (data) {
+                var chatTx = document.getElementById('chatTextArea');
+                chatTx.value += data + ' entrou\n';
+            });
+            
+            socket.on('mensagemclient', function (msg, name) {
+                var chatTx = document.getElementById('chatTextArea');
+                chatTx.value += name + ': ' + msg;
+            });
+        }
+        
+        window.onload = onLoad;
+
+
+    </script>
+
+</head>
+<body>
+    <h1>socket.io chat</h1>
+    <input id="nameInput" type="text"/>
+    <button id="loginButton">Login</button>
+    <br/>
+    <textarea id="chatTextArea" rows="5" cols="50"></textarea>
+    <br/>
+    <input id="mensagemInput" type="text"/>
+    <button id="sendButton">Send</button>
+
+
+		<img src="1.png">
+
+<!-->snake goes here <!-->
+	
+	<div id="wrapper">
+		<canvas id="game" height="400" width="700">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+		<script src="/snake.js"></script>
+		
+
+		</canvas>
+
+
+	</div>
+
+
+</body>
+</html>
